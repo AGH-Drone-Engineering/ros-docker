@@ -8,3 +8,6 @@ RUN apt-get install -y lsb-release wget gnupg && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null && \
     apt-get update && \
     apt-get install -y ignition-fortress
+
+
+RUN apt-get install -y ros-${ROS_DISTRO}-ros-ign
