@@ -4,9 +4,7 @@ RUN apt-get update
 
 
 # Ardupilot (for SITL)
-RUN git clone https://github.com/ArduPilot/ardupilot.git /code/ardupilot && \
-    cd /code/ardupilot && \
-    git submodule update --init --recursive
+RUN git clone --depth 1 --recurse-submodules https://github.com/ArduPilot/ardupilot.git /code/ardupilot
     # ignore root warning
 RUN cd /code/ardupilot && \
     sed -i '6,9d' Tools/environment_install/install-prereqs-ubuntu.sh && \
@@ -19,7 +17,7 @@ RUN cd /code/ardupilot && \
 
 # Ardupilot Gazebo plugin
 RUN apt-get install -y rapidjson-dev libignition-gazebo6-dev
-RUN git clone https://github.com/ArduPilot/ardupilot_gazebo -b ignition-fortress /code/ardupilot_gazebo
+RUN git clone --depth 1 https://github.com/ArduPilot/ardupilot_gazebo -b ignition-fortress /code/ardupilot_gazebo
 RUN cd /code/ardupilot_gazebo && \
     mkdir build && cd build && \
     cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
