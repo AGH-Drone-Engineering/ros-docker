@@ -25,8 +25,8 @@ RUN cd /code/ardupilot_gazebo && \
     cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j4
 # make the plugin visible to gazebo
-ENV IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/code/ardupilot_gazebo/build:$IGN_GAZEBO_SYSTEM_PLUGIN_PATH
-ENV IGN_GAZEBO_RESOURCE_PATH=/code/ardupilot_gazebo/models:/code/ardupilot_gazebo/worlds:$IGN_GAZEBO_RESOURCE_PATH
+ENV IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/code/ardupilot_gazebo/build:${IGN_GAZEBO_SYSTEM_PLUGIN_PATH}
+ENV IGN_GAZEBO_RESOURCE_PATH=/code/ardupilot_gazebo/models:/code/ardupilot_gazebo/worlds:${IGN_GAZEBO_RESOURCE_PATH}
 
 
 # Install mavros
@@ -36,4 +36,4 @@ RUN /ros_entrypoint.sh ros2 run mavros install_geographiclib_datasets.sh
 
 # Configure scripts
 COPY scripts /root/scripts
-ENV PATH=$PATH:/root/scripts
+ENV PATH=${PATH}:/root/scripts
